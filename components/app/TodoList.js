@@ -10,7 +10,7 @@ const TodoList = () => {
   }, []);
 
   return (
-    <div className="flex flex-row flex-wrap justify-center">
+    <div className="grid w-full grid-row grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 justify-items-center">
       {todos.map((task) => {
         return <Todo task={task} key={task.id} />;
       })}
