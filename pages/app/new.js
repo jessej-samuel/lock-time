@@ -17,8 +17,8 @@ function New({ router }) {
     if (formRef.current.checkValidity()) {
       // window.location.href = "/app";
       // submissionRef.current.click();
-      router.push("/app", "");
       TodoApi.post("/tasks/new", formData);
+      router.push("/app", "");
     } else {
       formRef.current.reportValidity();
     }
@@ -30,6 +30,7 @@ function New({ router }) {
       <form
         ref={formRef}
         className="flex flex-col gap-4 text-primaryText/75 text-sm"
+        method="POST"
         onSubmit={(e) => submit(e)}
       >
         <label htmlFor="title" className="grid grid-cols-3  h-10 items-center">
