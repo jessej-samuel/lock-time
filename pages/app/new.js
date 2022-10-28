@@ -41,6 +41,7 @@ function New({ router }) {
             value={formData.title}
             className="col-span-2 text-black h-full rounded focus-visible:border-2 focus-visible:border-primary outline-none p-1 caret-primary"
             required
+            maxLength={50}
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
