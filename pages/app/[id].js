@@ -6,7 +6,12 @@ import Link from "next/link";
 const TaskById = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [task, setTask] = useState(null);
+  const [task, setTask] = useState({
+    id: 0,
+    title: "",
+    deadline: "",
+    done: false,
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,12 +25,16 @@ const TaskById = () => {
 
   return (
     <>
-      <div>
-        <h1>Task</h1>
-        <p>{task?.toString()}</p>
-        <p>{task?.description}</p>
+      <div className="bg-primary/50 p-4 rounded text-primaryText">
+        <section className="my-2">
+          <h1 className="font-semibold text-lg">Task #{task.id}</h1>
+        </section>
+        <Link href={"/app"}>
+          <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            ⬅️ Go back to home
+          </a>
+        </Link>
       </div>
-      <Link href={"/app"}>Go back to home</Link>
     </>
   );
 };
