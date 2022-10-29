@@ -6,7 +6,7 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    TodoApi.get("/tasks").then((res) => setTodos(res.data));
+    TodoApi.get("/tasks/deadline/future").then((res) => setTodos(res.data));
   }, []);
 
   return (

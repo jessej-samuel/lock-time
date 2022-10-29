@@ -16,16 +16,18 @@ const DueToday = () => {
 
   useEffect(() => {
     fetchTasks();
-  });
+  }, []);
 
   return (
     <div className="p-4 rounded bg-primary/50 mb-5">
       <h1 className="text-center font-semibold text-lg text-white mb-4">
         DueToday
       </h1>
-      {tasks.map((task, oof) => (
-        <Todo task={task} key={oof} />
-      ))}
+      <div className="grid w-full grid-row grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 justify-items-center">
+        {tasks.map((task, oof) => (
+          <Todo task={task} key={oof} />
+        ))}
+      </div>
     </div>
   );
 };
