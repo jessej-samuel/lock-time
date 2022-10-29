@@ -25,12 +25,23 @@ const TaskById = () => {
 
   return (
     <>
-      <div className="bg-primary/50 p-4 rounded text-primaryText">
-        <section className="my-2">
-          <h1 className="font-semibold text-lg">Task #{task.id}</h1>
+      <div className="bg-primary p-4 rounded text-primaryText">
+        <h1 className="font-semibold text-lg flex justify-between items-center">
+          Task #{task.id}{" "}
+          <span className="text-xs lowercase font-mono font-extralight flex items-center">
+            [Created on {new Date(task.created).toUTCString()}]
+          </span>
+        </h1>
+
+        <section className="my-4">
+          <p className="text-sm">Title: {task.title}</p>
+          <p className="text-sm">
+            Deadline: {new Date(task.deadline).toUTCString()}
+          </p>
+          <p className="text-sm">Done: {task.completed ? "Yes" : "No"}</p>
         </section>
         <Link href={"/app"}>
-          <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <a className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded">
             ⬅️ Go back to home
           </a>
         </Link>

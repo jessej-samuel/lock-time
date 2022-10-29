@@ -20,7 +20,7 @@ const Overdue = () => {
   }, []);
 
   return (
-    <div className="p-4 rounded bg-primary/50 mb-5">
+    <div className="p-4 rounded bg-red-500 mb-5">
       <h1 className="text-center font-semibold text-lg text-white mb-4">
         Overdue{" "}
         <button
