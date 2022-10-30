@@ -9,7 +9,7 @@ const TaskById = () => {
   const [task, setTask] = useState({
     id: 0,
     title: "",
-    deadline: "",
+    deadline: "2022-10-30T03:15:00.000Z",
     done: false,
   });
 
@@ -23,6 +23,12 @@ const TaskById = () => {
     fetchData();
   }, [id]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await TodoApi.put("/tasks/" + id, task);
+    router.push("/app", "");
+  };
+
   return (
     <>
       <div className="bg-primary p-4 rounded text-primaryText">
@@ -33,13 +39,63 @@ const TaskById = () => {
           </span>
         </h1>
 
-        <section className="my-4">
-          <p className="text-sm">Title: {task.title}</p>
+        <form
+          className="my-4 h-48 flex justify-evenly flex-col"
+          onSubmit={handleSubmit}
+        >
           <p className="text-sm">
-            Deadline: {new Date(task.deadline).toUTCString()}
+            <label
+              htmlFor="title"
+              className="grid grid-cols-3  h-10 items-center"
+            >
+              Title:{" "}
+              <input
+                type={"text"}
+                value={task.title}
+                onChange={(e) => setTask({ ...task, title: e.target.value })}
+                className="col-span-2  h-full rounded bg-white/50 focus-visible:text-black text-white focus-visible:bg-white focus-visible:border-2 focus-visible:border-primary outline-none p-1 caret-primary"
+              />{" "}
+            </label>
           </p>
-          <p className="text-sm">Done: {task.completed ? "Yes" : "No"}</p>
-        </section>
+          <p className="text-sm">
+            <label
+              htmlFor="deadline"
+              className="grid grid-cols-3  h-10 items-center"
+            >
+              Deadline:{" "}
+              <input
+                type="datetime-local"
+                value={task.deadline.slice(0, -1)}
+                onChange={(e) =>
+                  setTask({ ...task, deadline: e.target.value + "Z" })
+                }
+                className="col-span-2 bg-white/50 focus-visible:text-black text-white focus-visible:bg-white h-full rounded focus-visible:border-2 focus-visible:border-primary outline-none p-1 caret-primary"
+              />
+            </label>
+          </p>
+          <p className="text-sm">
+            <label
+              htmlFor="done"
+              className="grid grid-cols-3  h-10 items-center justify-start"
+            >
+              Done:{" "}
+              <input
+                id="oops"
+                type="checkbox"
+                value={task.done}
+                checked={task.done}
+                onChange={(e) => setTask({ ...task, done: e.target.checked })}
+                className=" focus-visible:text-black text-white focus-visible:bg-white h-4 self-start rounded focus-visible:border-2 focus-visible:border-primary outline-none p-1 caret-primary"
+              />
+            </label>
+          </p>
+          <button
+            type="submit"
+            className="bg-blue-500 text-primaryText rounded p-1"
+          >
+            ⬆️ Save
+          </button>
+        </form>
         <Link href={"/app"}>
           <a className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded">
             ⬅️ Go back to home
