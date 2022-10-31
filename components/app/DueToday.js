@@ -17,7 +17,9 @@ const DueToday = () => {
   useEffect(() => {
     fetchTasks();
   }, []);
-
+  if (tasks.length === 0) {
+    return <></>;
+  }
   return (
     <div className="p-4 rounded bg-primary/50 mb-5">
       <h1 className="text-center font-semibold text-lg text-white mb-4">
