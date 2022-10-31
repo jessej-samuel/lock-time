@@ -10,7 +10,7 @@ const TaskById = () => {
     id: 0,
     title: "",
     deadline: "2022-10-30T03:15:00.000Z",
-    done: false,
+    completed: false,
   });
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const TaskById = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(task);
     await TodoApi.put("/tasks/" + id, task);
     router.push("/app", "");
   };
@@ -80,11 +81,13 @@ const TaskById = () => {
             >
               Done:{" "}
               <input
-                id="oops"
                 type="checkbox"
-                value={task.done}
-                checked={task.done}
-                onChange={(e) => setTask({ ...task, done: e.target.checked })}
+                value={task.completed}
+                checked={task.completed}
+                onChange={(e) => {
+                  setTask({ ...task, completed: e.target.checked });
+                  console.log(e.target.checked);
+                }}
                 className=" focus-visible:text-black text-white focus-visible:bg-white h-4 self-start rounded focus-visible:border-2 focus-visible:border-primary outline-none p-1 caret-primary"
               />
             </label>
