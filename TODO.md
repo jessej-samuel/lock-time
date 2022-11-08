@@ -1,1 +1,4 @@
-- [ ] Delete tasks
+- [x] Delete tasks
+- [x] Mark tasks as completed
+- [x] Don't show completed tasks on /app
+- [ ] Add an option to see completed tasks

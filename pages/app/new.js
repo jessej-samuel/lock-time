@@ -85,9 +85,8 @@ function New({ router }) {
         <input
           type="submit"
           ref={submissionRef}
-          className="block w-fit mx-auto bg-secondary hover:shadow-xl px-4 py-2 rounded"
+          className="block w-fit mx-auto bg-secondary hover:scale-105 transition-all hover:shadow-xl px-4 py-2 rounded"
           value={"Create"}
-          onClick={() => console.log("Input clicked")}
         />
       </form>
     </div>
